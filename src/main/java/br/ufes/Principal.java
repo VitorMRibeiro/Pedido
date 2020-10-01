@@ -26,7 +26,9 @@ public class Principal {
 
             pedido1.addItem(new Produto("Folha Papel A4", 0.05, 10), 10);
 
-            System.out.println(pedido1);
+            int[] arr = {1, 2, 3};
+
+            System.out.println(arr[0]); 
 
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
