@@ -52,7 +52,6 @@ public final class Produto {
     public String toString() {
         return "Produto: " + nome
                 + ", valor unitario: R$" + valorUnitario
-                + ", valor da ultima compra: R$" + valorUltimaCompra
                 + ", quantidade em estoque: " + quantidade;
     }
 
