@@ -6,6 +6,7 @@ import br.ufes.model.Pedido;
 import br.ufes.model.Produto;
 import br.ufes.model.ICMS;
 import java.time.LocalDate;
+import java.lang.Integer;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Principal {
 
         try {
 
-            ICMS.calculaICMS("Livro", "MA", "ES");
+            ICMS.calculaICMS("Arma", "MA", "MA");
 
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
