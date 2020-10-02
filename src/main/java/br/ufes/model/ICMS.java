@@ -105,24 +105,32 @@ public final class ICMS {
             return 0;
         }
         else{
-            if( estadoOrigem == estadoDestino ){
-                double valorAliquota; 
+            double aliquotaInterna;
 
-                // procura aliquota nas regras estaduais
-                Number aliquota = aliquotaRegrasEstaduais.get(Set.of(estadoOrigem, tipoProduto));
-                // se nao encontrar
-                if( aliquota == null){
-                    // usar aliquota interna geral
-                    valorAliquota = tabelaAliquotas[indices.get(estadoOrigem)][indices.get(estadoOrigem)];
-                }
-                else{
-                    valorAliquota = aliquota.doubleValue();
-                }
-                System.out.printf("ICMS para o estado de origem: %.1f porcento \n", valorAliquota);
+            // procura aliquota nas regras estaduais
+            Number aliquota = aliquotaRegrasEstaduais.get(Set.of(estadoOrigem, tipoProduto));
+            // se nao encontrar
+            if( aliquota == null){
+                // usar aliquota interna geral
+                aliquotaInterna = tabelaAliquotas[indices.get(estadoOrigem)][indices.get(estadoOrigem)];
             }
             else{
-                // usar aliquota interestadual, e mandar o diferencial para o estado de destino.
-            
+                aliquotaInterna = aliquota.doubleValue();
+            }
+
+            // ICMS interno
+            if( estadoOrigem == estadoDestino ){
+                // vale a aliquota interna
+                System.out.printf("ICMS para o estado de origem: %.1f porcento \n", aliquotaInterna);
+            }
+            // ICMS interestadual
+            else{
+                // vale aliquota interestadual. Mandar o diferencial para o estado de destino.
+                double aliquotaInterestadual = tabelaAliquotas[indices.get(estadoOrigem)][indices.get(estadoDestino)];
+                double diferencial = aliquotaInterna - aliquotaInterestadual;
+
+                System.out.printf("ICMS para o estado de origem: %.1f porcento \n", aliquotaInterestadual);
+                System.out.printf("ICMS para o estado de destino: %.1f porcento \n", diferencial);
             }
         }
 

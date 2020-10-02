@@ -18,7 +18,7 @@ public class Principal {
 
         try {
 
-            ICMS.calculaICMS("Arma", "MA", "MA");
+            ICMS.calculaICMS("Arma", "MA", "ES");
 
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
