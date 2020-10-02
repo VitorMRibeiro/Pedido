@@ -4,6 +4,7 @@ import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Cliente;
 import br.ufes.model.Pedido;
 import br.ufes.model.Produto;
+import br.ufes.model.ICMS;
 import java.time.LocalDate;
 
 /**
@@ -16,17 +17,7 @@ public class Principal {
 
         try {
 
-            Cliente cliente1 = new Cliente("Fulano", "123.456.789-01");
-
-            Produto produto1 = new Produto("Caneta", 3.50, 8);
-            Produto produto2 = new Produto("Borracha", 0.50, 10);
-
-            CarrinhoDeCompra carrinho1 = new CarrinhoDeCompra(001, cliente1, LocalDate.now());
-
-            carrinho1.addItem(produto1, 2);
-            carrinho1.addItem(produto2, 3);
-            
-            carrinho1.concluir();
+            ICMS icms = new ICMS();
 
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
