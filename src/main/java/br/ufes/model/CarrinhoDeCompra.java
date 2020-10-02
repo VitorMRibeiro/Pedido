@@ -32,7 +32,7 @@ public class CarrinhoDeCompra {
         this.id = id;
         this.cliente = cliente;
         this.data = data;
-        this.dataVencimento = data.plusMonths(1);
+        this.dataVencimento = data.plusDays(5);
     }
 
     public final void addItem(Produto produto, double quantidade) {
@@ -86,7 +86,7 @@ public class CarrinhoDeCompra {
         itens.get(id).setNovaQuantidade(novaQuantidade);
     }    
     
-    public void concluir(){
+    public Pedido concluir(){
         
         calcularValor();
         
@@ -102,6 +102,8 @@ public class CarrinhoDeCompra {
         pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
         
         System.out.println(pedido);
+        return pedido;
+    
     }
     
     public int getId() {

@@ -10,7 +10,7 @@ package br.ufes.model;
  * @author tabat
  */
 public enum StatusPedido {
-    ABERTO("Aberto"), VENCIDO("Vencido"), PAGO("Pago"), CONCLUIDO("Concluído");   
+    ABERTO("Aberto"), VENCIDO("Vencido"), PAGO("Pago"), CONCLUIDO("Concluído"), NAOAPROVADO("Não aprovado");   
     
     private String descricao;
     

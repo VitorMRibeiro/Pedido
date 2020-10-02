@@ -1,5 +1,9 @@
 package br.ufes.model;
 
+import business.PagamentoCartaoCredito;
+import business.PagamentoCartaoDebito;
+import business.PagamentoDinheiro;
+import business.ProcessadoraDePagamento;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -34,6 +38,14 @@ public final class Pedido {
         this.status = status;
     }
 
+    public void atualizarStatus(StatusPedido status) {
+        this.status = status;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
     public int getId() {
         return id;
     }
@@ -60,6 +72,25 @@ public final class Pedido {
 
     public List<Item> getItens() {
         return Collections.unmodifiableList(itens);
+    }
+    public void efetuarPagamento(String formaDePagamento, double saldo ){
+        ProcessadoraDePagamento processadora = null;
+        if(formaDePagamento.equals("cartão de crédito")){
+            processadora = new ProcessadoraDePagamento(new PagamentoCartaoCredito());
+        }
+        if(formaDePagamento.equals("cartão de débito")){
+            processadora = new ProcessadoraDePagamento(new PagamentoCartaoDebito());
+        }
+        if(formaDePagamento.equals("dinheiro")){
+            processadora = new ProcessadoraDePagamento(new PagamentoDinheiro());
+        }
+        
+        try {
+            processadora.efetuarPagamento(this,saldo);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
     }
 
     @Override

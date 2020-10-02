@@ -26,8 +26,11 @@ public class Principal {
             carrinho1.addItem(produto1, 2);
             carrinho1.addItem(produto2, 3);
             
-            carrinho1.concluir();
-
+            Pedido pedido;
+            pedido=carrinho1.concluir();
+            pedido.efetuarPagamento("cartão de crédito", 6);
+            System.out.println(pedido.getStatus().getDescricao());
+            
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
 
