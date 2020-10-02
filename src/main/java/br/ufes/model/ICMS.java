@@ -1,10 +1,18 @@
 package br.ufes.model;
 
+import java.util.Collections;
+import java.util.Set;
+import java.util.Map;
+
+/**
+    Essa classe fornece metodos para o calculo de ICMS interno e interestadual. Esta classe não deve ser
+    instanciada.
+ */
 public final class ICMS {
     /* Tabela contendo as aliquotas internas e interestaduais de ICMS. Os valores na diaguanal
        principal representam as aliquotas internas e os demais valores representam as aliquotas
        interestaduais partindo do estado da linha do elemento para o da coluna. */
-    private final double[][]tabelaAliquotas = 
+    private static final double[][]tabelaAliquotas = 
       /* AC  AL  AM  AP  BA  CE  DF  ES  GO  MA  MT  MS  MG  PA  PB  PR  PE  PI  RN  RS  RJ  RO  RR  SC  SP  SE  TO*/
 /*AC*/{{ 17, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12},
 /*AL*/ { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12},
@@ -33,5 +41,27 @@ public final class ICMS {
 /*SP*/ {  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 18,  7,  7},
 /*SE*/ { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 18, 12},
 /*TO*/ { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 18}};
+
+    /* Tipos de produto isentos de ICMSs */
+    private static final Set<String> isentos = Set.of("Revista", "Jornal", "Livro", "Lubrificante");
+
+    /* Aliqutas internas por tipo de produto */
+    private static final Map aliquotaRegrasEstaduais = Map.of(
+        // Maranhão
+        Set.of("MA", "Arma"), 17
+    );
+
+    public static double calculaICMS(String tipoProduto, String estadoOrigem, String estadoDestino){
+        if(isentos.contains(tipoProduto)){
+            System.out.println("insento");
+        }
+        else{
+            System.out.println("calcula icms");
+        }
+
+        return 2;
+    }
+
+    private ICMS(){}
 
 }

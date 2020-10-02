@@ -17,7 +17,7 @@ public class Principal {
 
         try {
 
-            ICMS icms = new ICMS();
+            ICMS.calculaICMS("Livro", "MA", "ES");
 
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
