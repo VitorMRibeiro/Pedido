@@ -140,10 +140,10 @@ public final class ICMS {
         // Mato Grosso do Sul
         entry(Set.of("MS", "Armas e Municoes"), 27),
         // Minas Gerais
-        entry(Set.of("MT", "Refrigerante"), 27),
-        entry(Set.of("MT", "Armas e Municoes"), 27),
-        entry(Set.of("MT", "Frutas"), 15),
-        entry(Set.of("MT", "Arroz"), 15),
+        entry(Set.of("MG", "Refrigerante"), 27),
+        entry(Set.of("MG", "Armas e Municoes"), 27),
+        entry(Set.of("MG", "Frutas"), 15),
+        entry(Set.of("MG", "Arroz"), 15),
         // Para
         entry(Set.of("PA", "Bebidas Alcoolicas"), 30),
         entry(Set.of("PA", "Armas e Municoes"), 30),
