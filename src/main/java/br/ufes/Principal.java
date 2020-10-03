@@ -4,7 +4,9 @@ import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Cliente;
 import br.ufes.model.Pedido;
 import br.ufes.model.Produto;
+import br.ufes.model.ICMS;
 import java.time.LocalDate;
+import java.lang.Integer;
 
 /**
  *
