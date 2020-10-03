@@ -168,7 +168,7 @@ public final class ICMS {
             double aliquotaInterna;
 
             // procura aliquota nas regras estaduais
-            Number aliquota = aliquotaRegrasEstaduais.get(Set.of(estadoOrigem, tipoProduto));
+            Number aliquota = aliquotaRegrasEstaduais.get(Set.of(estadoDestino, tipoProduto));
             // se nao encontrar
             if( aliquota == null){
                 // usar aliquota interna geral
