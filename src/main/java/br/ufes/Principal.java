@@ -4,7 +4,7 @@ import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Cliente;
 import br.ufes.model.Pedido;
 import br.ufes.model.Produto;
-import br.ufes.model.ICMS;
+import business.ICMS;
 import java.time.LocalDate;
 import java.lang.Integer;
 
@@ -32,6 +32,8 @@ public class Principal {
             pedido=carrinho1.concluir();
             pedido.efetuarPagamento("cartão de crédito", 6);
             System.out.println(pedido.getStatus().getDescricao());
+
+            ICMS.calculaICMS("Armas e Municoes", "SP", "RJ");
             
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
