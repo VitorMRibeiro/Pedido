@@ -91,8 +91,68 @@ public final class ICMS {
        seria trabalhoso demais.
      */
     private static final Map<Set, Number> aliquotaRegrasEstaduais = Map.ofEntries(
-        // Maranhão
-        entry(Set.of("MA", "Arma"), 28.5)
+        // Acre
+        entry(Set.of("AC", "Bedida Alcoolica"), 33),
+        entry(Set.of("AC", "Fumo"), 30),
+        entry(Set.of("AC", "Cerveja"), 27),
+        entry(Set.of("AC", "Armas e Municoes"), 27),
+        entry(Set.of("AC", "Joais"), 27),
+        // Alagoas
+        entry(Set.of("AL", "Armas e Municoes"), 29),
+        entry(Set.of("AL", "Cigarro"), 29),
+        entry(Set.of("AL", "Fumo"), 29),
+        entry(Set.of("AL", "Cachimbo"), 29),
+        entry(Set.of("AL", "Joias"), 29),
+        entry(Set.of("AL", "Bebida Alcoolica"), 27),
+        // Amapa
+        entry(Set.of("AP", "Armas e Municoes"), 29),
+        entry(Set.of("AP", "Bebidas Alcoolicas"), 29),
+        entry(Set.of("AP", "Joias"), 29),
+        entry(Set.of("AP", "Arroz"), 13),
+        entry(Set.of("AP", "Cafe"), 13),
+        entry(Set.of("AP", "Acucar"), 13),
+        entry(Set.of("AP", "Farinha"), 13),
+        // Amazonas
+        entry(Set.of("AM", "Armas e Municoes"), 30),
+        // Bahia
+        entry(Set.of("BA", "Armas e Municoes"), 38),
+        entry(Set.of("BA", "Arroz"), 7),
+        entry(Set.of("BA", "Feijao"), 7),
+        // Ceara
+        entry(Set.of("CE", "Armas e Municoes"), 28),
+        // Distrito Federal
+        entry(Set.of("DF", "Fumo"), 35),
+        entry(Set.of("DF", "Bebidas Alcoolicas"), 29),
+        // Espirito Santo
+        entry(Set.of("ES", "Alcool"), 27),
+        entry(Set.of("ES", "Armas e Municoes"), 27),
+        // Goias
+        entry(Set.of("GO", "Fumo"), 25),
+        entry(Set.of("GO", "Armas e Municoes"), 25),
+        entry(Set.of("GO", "Peixe"), 12),
+        entry(Set.of("GO", "Carne"), 12),
+        // Maranhao
+        entry(Set.of("MA", "Bebidas Alcoolicas"), 26),
+        entry(Set.of("MA", "Armas e Municoes"), 26),
+        // Mato Grosso
+        entry(Set.of("MT", "Armas e Municoes"), 35),
+        entry(Set.of("MT", "Arroz"), 12),
+        // Mato Grosso do Sul
+        entry(Set.of("MS", "Armas e Municoes"), 27),
+        // Minas Gerais
+        entry(Set.of("MT", "Refrigerante"), 27),
+        entry(Set.of("MT", "Armas e Municoes"), 27),
+        entry(Set.of("MT", "Frutas"), 15),
+        entry(Set.of("MT", "Arroz"), 15),
+        // Para
+        entry(Set.of("PA", "Bebidas Alcoolicas"), 30),
+        entry(Set.of("PA", "Armas e Municoes"), 30),
+        // Rio de Janeiro
+        entry(Set.of("RJ", "Armas e Municoes"), 200), // carai
+        // Sao Paulo
+        entry(Set.of("SP", "Jogos Eletronicos"), 30),
+        entry(Set.of("SP", "Motocicletas"), 30),
+        entry(Set.of("SP", "Raquete de Tenis"), 25)
     );
 
     public static double calculaICMS(String tipoProduto, String estadoOrigem, String estadoDestino){
