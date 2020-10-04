@@ -156,6 +156,7 @@ public final class ICMS {
     );
 
     public static double calculaICMS(String tipoProduto, String estadoOrigem, String estadoDestino){
+        
         if(!( indices.containsKey(estadoOrigem) && indices.containsKey(estadoDestino) )){
             throw new RuntimeException("Estado inválido");
         }
@@ -172,7 +173,7 @@ public final class ICMS {
             // se nao encontrar
             if( aliquota == null){
                 // usar aliquota interna geral
-                aliquotaInterna = tabelaAliquotas[indices.get(estadoOrigem)][indices.get(estadoOrigem)];
+                aliquotaInterna = tabelaAliquotas[indices.get(estadoDestino)][indices.get(estadoDestino)];
             }
             else{
                 aliquotaInterna = aliquota.doubleValue();
