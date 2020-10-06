@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.ufes.model;
 
 import java.time.LocalDate;
@@ -11,12 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-/**
- *
- * @author tabat
- */
 public class CarrinhoDeCompra {
     protected int id;
+    protected String cupom;
     protected Cliente cliente;
     protected double valor;
     protected double valorDesconto;
@@ -63,6 +56,10 @@ public class CarrinhoDeCompra {
             valor += item.getValorItem();
         }
     }
+    
+    public void aplicaDesconto(double valorAPagar) {
+        valorAPagar = valor - valorDesconto; 
+    }
 
     public void removerItem(String nomeProduto) {
 
@@ -90,13 +87,15 @@ public class CarrinhoDeCompra {
         
         calcularValor();
         
-        //Adicionar aqui o código para calcular os descontos
-        //Para efeitos de testes vou colocar uma valor fixo para o desconto
+        aplicaDesconto();
         
-        double porcentagemDesconto = 0.1;
-        valorAPagar = valor - (valor * porcentagemDesconto);
-        
-        valorDesconto = valor - valorAPagar;
+//      Adicionar aqui o código para calcular os descontos
+//      Para efeitos de testes vou colocar uma valor fixo para o desconto
+//        
+//      double porcentagemDesconto = 0.1;
+//      valorAPagar = valor - (valor * porcentagemDesconto);
+//        
+//      valorDesconto = valor - valorAPagar;
         
         Pedido pedido;
         pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
@@ -130,6 +129,9 @@ public class CarrinhoDeCompra {
         return cliente;
     }
 
+    public String getCupom() {
+        return cupom;
+    }
     public List<Item> getItens() {
         return Collections.unmodifiableList(itens);
     }
