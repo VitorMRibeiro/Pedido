@@ -19,7 +19,7 @@ public final class Pedido {
     protected double valor;
     protected double valorDesconto;
     protected double valorAPagar;
-    protected final ArrayList<Item> itens = new ArrayList<>();
+    protected final ArrayList<Item> itens;
     protected final LocalDate data;
     protected final LocalDate dataVencimento;
     protected StatusPedido status;
@@ -36,6 +36,7 @@ public final class Pedido {
         this.data = data;
         this.dataVencimento = data.plusDays(5);
         this.status = status;
+        this.itens = new ArrayList<>(itens);
     }
 
     public void atualizarStatus(StatusPedido status) {
