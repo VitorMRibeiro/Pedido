@@ -87,7 +87,7 @@ public class CarrinhoDeCompra {
         
         calcularValor();
         
-        aplicaDesconto();
+        aplicaDesconto(valor);
         
 //      Adicionar aqui o código para calcular os descontos
 //      Para efeitos de testes vou colocar uma valor fixo para o desconto
