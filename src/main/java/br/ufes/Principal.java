@@ -7,6 +7,7 @@ import br.ufes.model.Produto;
 import business.ICMS;
 import java.time.LocalDate;
 import java.lang.Integer;
+import java.time.Month;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Principal {
 
         try {
 
-            Cliente cliente1 = new Cliente("Fulano", "123.456.789-01");
+            Cliente cliente1 = new Cliente("Fulano", "123.456.789-01", LocalDate.of(1990,10,10));
 
             Produto produto1 = new Produto("Caneta", 3.50, 8);
             Produto produto2 = new Produto("Borracha", 0.50, 10);

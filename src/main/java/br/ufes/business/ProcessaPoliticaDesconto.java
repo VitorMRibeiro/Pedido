@@ -1,5 +1,6 @@
 package br.ufes.business;
 
+import br.ufes.model.CarrinhoDeCompra;
 import java.util.ArrayList;
 import br.ufes.model.IPoliticaDeDesconto;
 import br.ufes.model.RegraDescontoAniversariante;
@@ -8,7 +9,7 @@ import br.ufes.model.RegraDescontoPontuacao;
 import br.ufes.model.RegraDescontoTipoProduto;
 
 public class ProcessaPoliticaDesconto {
-    private ArrayList<IPoliticaDesconto> regrasDesconto = new ArrayList<>();
+    private ArrayList<IPoliticaDeDesconto> regrasDesconto = new ArrayList<>();
 
     public ProcessaPoliticaDesconto() {
         regrasDesconto.add(new RegraDescontoAniversariante());
@@ -18,7 +19,7 @@ public class ProcessaPoliticaDesconto {
     }
     
     public void executa(CarrinhoDeCompra carrinhoCompra){
-        for (IPoliticaDesconto regraDesconto : regrasDesconto){
+        for (IPoliticaDeDesconto regraDesconto : regrasDesconto){
             regraDesconto.calcular(carrinhoCompra);
         }
     }

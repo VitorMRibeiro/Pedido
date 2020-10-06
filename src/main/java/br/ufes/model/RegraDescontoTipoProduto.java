@@ -11,7 +11,7 @@ public class RegraDescontoTipoProduto implements IPoliticaDeDesconto{
     
     @Override
     public void calcular(CarrinhoDeCompra carrinhoCompra) {
-        ArrayList<Item> itens = carrinhoCompra.getItens();
+        ArrayList<Item> itens = new ArrayList<>(carrinhoCompra.getItens());
 
         for (Item item : itens){
             Produto produto = item.getProduto();
