@@ -15,17 +15,17 @@ public class RegraDescontoTipoProduto implements IPoliticaDeDesconto{
 
         for (Item item : itens){
             Produto produto = item.getProduto();
-            String nomeProduto = produto.getNome();
-            if (nomeProduto.equals("Papelaria")){
+            String tipoProduto = produto.getTipo();
+            if (tipoProduto.equals("Papelaria")){
                 double valorDesconto = carrinhoCompra.valorAPagar * 0.10;
                 carrinhoCompra.aplicaDesconto(valorDesconto);
-            } else if (nomeProduto.equals("Comida")){
+            } else if (tipoProduto.equals("Comida")){
                 double valorDesconto = carrinhoCompra.valorAPagar * 0.20;
                 carrinhoCompra.aplicaDesconto(valorDesconto);
-            } else if (nomeProduto.equals("Roupa")){
+            } else if (tipoProduto.equals("Roupa")){
                 double valorDesconto = carrinhoCompra.valorAPagar * 0.25;
                 carrinhoCompra.aplicaDesconto(valorDesconto);
-            } else if (nomeProduto.equals("Comida")){
+            } else if (tipoProduto.equals("Comida")){
                 double valorDesconto = carrinhoCompra.valorAPagar * 0.05;
                 carrinhoCompra.aplicaDesconto(valorDesconto);
             } else {

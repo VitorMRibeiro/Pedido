@@ -6,11 +6,13 @@ public final class Produto {
     private double valorUnitario;
     private double valorUltimaCompra;
     private double quantidade;
+    private String tipo;
 
-    public Produto(String nome, double valorUnitario, double quantidade) {
+    public Produto(String nome, double valorUnitario, double quantidade, String tipo) {
         this.nome = nome;
         setValorUnitario(valorUnitario);
         this.quantidade = quantidade;
+        this.tipo = tipo;
     }
 
     public boolean estoqueDisponivel(double quantidadeNecessaria) {
@@ -31,6 +33,14 @@ public final class Produto {
 
     public double getQuantidade() {
         return quantidade;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setNovaQuantidade(double quantidadeRetirada) {
+        this.quantidade -= quantidadeRetirada;
     }
 
     public void setNome(String nome) {

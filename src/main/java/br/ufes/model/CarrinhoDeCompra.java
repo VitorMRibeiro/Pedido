@@ -101,6 +101,10 @@ public class CarrinhoDeCompra {
         Pedido pedido;
         pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
         
+        for (Item item : itens){
+            item.getProduto().setNovaQuantidade(item.getQuantidade());
+        }
+        
         System.out.println(pedido);
         return pedido;
     

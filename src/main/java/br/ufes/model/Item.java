@@ -50,6 +50,7 @@ public final class Item {
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
         return produto.getNome()
+                + ", tipo: " + produto.getTipo()
                 + ", valor Unitario: R$ " + valorUnitario
                 + ", quantidade no pedido:" + quantidade
                 + ", valor Total: R$ " + df.format(getValorItem());
