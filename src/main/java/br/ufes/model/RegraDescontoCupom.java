@@ -8,18 +8,19 @@ public class RegraDescontoCupom implements IPoliticaDeDesconto{
 
     @Override
     public void calcular(CarrinhoDeCompra carrinhoCompra) {
+        if (carrinhoCompra.getCupom() == null){
         
-        if (carrinhoCompra.getCupom().toLowerCase().equals("10OFF")){
-            double valorDesconto = carrinhoCompra.valorAPagar * 0.10;
-            carrinhoCompra.aplicaDesconto(valorDesconto);
+        }else if (carrinhoCompra.getCupom().toLowerCase().equals("10OFF")){
+            double valorDesconto = carrinhoCompra.valor * 0.10;
+            carrinhoCompra.calculaDesconto(valorDesconto);
         } 
         else if (carrinhoCompra.getCupom().toLowerCase().equals("PRIMEIRACOMPRA")){
-            double valorDesconto = carrinhoCompra.valorAPagar * 0.20;
-            carrinhoCompra.aplicaDesconto(valorDesconto);
+            double valorDesconto = carrinhoCompra.valor * 0.20;
+            carrinhoCompra.calculaDesconto(valorDesconto);
         }
         else if (carrinhoCompra.getCupom().toLowerCase().equals("FRETEGRATIS")){
-            double valorDesconto = carrinhoCompra.valorAPagar * 0.30;
-            carrinhoCompra.aplicaDesconto(valorDesconto);
+            double valorDesconto = carrinhoCompra.valor * 0.30;
+            carrinhoCompra.calculaDesconto(valorDesconto);
         }
     }
 }

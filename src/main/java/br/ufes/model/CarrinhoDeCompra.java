@@ -1,6 +1,7 @@
 
 package br.ufes.model;
 
+import business.ProcessaPoliticaDesconto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,10 +58,16 @@ public class CarrinhoDeCompra {
         }
     }
     
-    public void aplicaDesconto(double valorAPagar) {
-        valorAPagar = valor - valorDesconto; 
+    public void calculaDesconto(double valorADescontar) {
+        
+        valorDesconto += valorADescontar; 
+    }
+    
+    public void aplicaDesconto(){
+        valorAPagar = valor - valorDesconto;
     }
 
+    
     public void removerItem(String nomeProduto) {
 
         Optional<Item> produtoEncontrado = getItemPorNome(nomeProduto);
@@ -83,31 +90,8 @@ public class CarrinhoDeCompra {
         itens.get(id).setNovaQuantidade(novaQuantidade);
     }    
     
-    public Pedido concluir(){
-        
-        calcularValor();
-        
-        aplicaDesconto(valor);
-
-        
-//      Adicionar aqui o código para calcular os descontos
-//      Para efeitos de testes vou colocar uma valor fixo para o desconto
-//        
-//      double porcentagemDesconto = 0.1;
-//      valorAPagar = valor - (valor * porcentagemDesconto);
-//        
-//      valorDesconto = valor - valorAPagar;
-        
-        Pedido pedido;
-        pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
-        
-        for (Item item : itens){
-            item.getProduto().setNovaQuantidade(item.getQuantidade());
-        }
-        
-        System.out.println(pedido);
-        return pedido;
-    
+    public void setCupom(String cupom){
+        this.cupom = cupom;
     }
     
     public int getId() {
@@ -139,5 +123,31 @@ public class CarrinhoDeCompra {
     }
     public List<Item> getItens() {
         return Collections.unmodifiableList(itens);
+    }
+    
+    public void executaPoliticasDesconto(){
+        ProcessaPoliticaDesconto processaPoliticaDesconto = new ProcessaPoliticaDesconto();
+        
+        processaPoliticaDesconto.executa(this);
+    }
+    
+    public Pedido concluir(){
+        
+        calcularValor();
+        
+        executaPoliticasDesconto();
+        
+        aplicaDesconto();
+        
+        Pedido pedido;
+        pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
+        
+        for (Item item : itens){
+            item.getProduto().setNovaQuantidade(item.getQuantidade());
+        }
+        
+        System.out.println(pedido);
+        return pedido;
+    
     }
 }
