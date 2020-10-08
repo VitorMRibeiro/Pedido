@@ -10,15 +10,15 @@ public class RegraDescontoCupom implements IPoliticaDeDesconto{
     public void calcular(CarrinhoDeCompra carrinhoCompra) {
         if (carrinhoCompra.getCupom() == null){
         
-        }else if (carrinhoCompra.getCupom().toLowerCase().equals("10OFF")){
+        }else if (carrinhoCompra.getCupom().toLowerCase().equals("100ff")){
             double valorDesconto = carrinhoCompra.valor * 0.10;
             carrinhoCompra.calculaDesconto(valorDesconto);
         } 
-        else if (carrinhoCompra.getCupom().toLowerCase().equals("PRIMEIRACOMPRA")){
+        else if (carrinhoCompra.getCupom().toLowerCase().equals("primeiracompra")){
             double valorDesconto = carrinhoCompra.valor * 0.20;
             carrinhoCompra.calculaDesconto(valorDesconto);
         }
-        else if (carrinhoCompra.getCupom().toLowerCase().equals("FRETEGRATIS")){
+        else if (carrinhoCompra.getCupom().toLowerCase().equals("fretegratis")){
             double valorDesconto = carrinhoCompra.valor * 0.30;
             carrinhoCompra.calculaDesconto(valorDesconto);
         }
