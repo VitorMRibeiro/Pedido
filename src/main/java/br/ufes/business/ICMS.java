@@ -155,7 +155,7 @@ public final class ICMS {
         entry(Set.of("SP", "Raquete de Tenis"), 25)
     );
 
-    public static double calculaICMS(String tipoProduto, String estadoOrigem, String estadoDestino){
+    public static Map<String, Number> calculaICMS(String tipoProduto, String estadoOrigem, String estadoDestino){
         
         if(!( indices.containsKey(estadoOrigem) && indices.containsKey(estadoDestino) )){
             throw new RuntimeException("Estado inválido");
@@ -163,7 +163,7 @@ public final class ICMS {
         
 
         if(isentos.contains(tipoProduto)){
-            return 0;
+            return Map.of("Origem", 0, "Destino", 0);
         }
         else{
             double aliquotaInterna;
@@ -182,7 +182,7 @@ public final class ICMS {
             // ICMS interno
             if( estadoOrigem == estadoDestino ){
                 // vale a aliquota interna
-                System.out.printf("ICMS para o estado de origem: %.1f porcento \n", aliquotaInterna);
+                return Map.of("Origem", aliquotaInterna / 100, "Destino", 0);
             }
             // ICMS interestadual
             else{
@@ -190,12 +190,9 @@ public final class ICMS {
                 double aliquotaInterestadual = tabelaAliquotas[indices.get(estadoOrigem)][indices.get(estadoDestino)];
                 double diferencial = aliquotaInterna - aliquotaInterestadual;
 
-                System.out.printf("ICMS para o estado de origem: %.1f porcento \n", aliquotaInterestadual);
-                System.out.printf("ICMS para o estado de destino: %.1f porcento \n", diferencial);
+                return Map.of("Origem", aliquotaInterestadual / 100, "Destino", diferencial / 100);
             }
         }
-
-        return 2;
     }
 
     private ICMS(){}

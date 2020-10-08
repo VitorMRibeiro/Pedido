@@ -51,7 +51,7 @@ public class Principal {
             
             //Novo status do pedido
             System.out.println(pedido.getStatus().getDescricao());
-            
+
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
 
