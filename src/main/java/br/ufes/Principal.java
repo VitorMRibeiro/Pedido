@@ -21,8 +21,8 @@ public class Principal {
 
             Cliente cliente1 = new Cliente("Fulano", "123.456.789-01", LocalDate.of(1990,10,10));
 
-            Produto produto1 = new Produto("Caneta", 3.50, 8);
-            Produto produto2 = new Produto("Borracha", 0.50, 10);
+            Produto produto1 = new Produto("Caneta", 3.50, 8, "Papelaria");
+            Produto produto2 = new Produto("Borracha", 0.50, 10, "Papelaria");
 
             CarrinhoDeCompra carrinho1 = new CarrinhoDeCompra(001, cliente1, LocalDate.now());
 
