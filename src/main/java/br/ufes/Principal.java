@@ -1,11 +1,12 @@
 package br.ufes;
 
+import br.ufes.business.ICMS;
 import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Cliente;
 import br.ufes.model.Pedido;
 import br.ufes.model.Produto;
-import business.ICMS;
-import business.ProcessaPoliticaDesconto;
+import br.ufes.business.ICMS;
+import br.ufes.business.ProcessaPoliticaDesconto;
 import java.time.LocalDate;
 import java.lang.Integer;
 import java.time.Month;
