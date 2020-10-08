@@ -183,7 +183,6 @@ public final class ICMS {
             if( estadoOrigem == estadoDestino ){
                 // vale a aliquota interna
                 return Map.of("Origem", aliquotaInterna / 100, "Destino", 0);
-                //System.out.printf("ICMS para o estado de origem: %.1f porcento \n", aliquotaInterna);
             }
             // ICMS interestadual
             else{
@@ -192,8 +191,6 @@ public final class ICMS {
                 double diferencial = aliquotaInterna - aliquotaInterestadual;
 
                 return Map.of("Origem", aliquotaInterestadual / 100, "Destino", diferencial / 100);
-                //System.out.printf("ICMS para o estado de origem: %.1f porcento \n", aliquotaInterestadual);
-                //System.out.printf("ICMS para o estado de destino: %.1f porcento \n", diferencial);
             }
         }
     }

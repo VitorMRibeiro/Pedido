@@ -102,11 +102,12 @@ public final class Pedido {
                 for(Item item : itens){
                     aliquotas = ICMS.calculaICMS(item.getProduto().getTipo(), "SP", "RJ");
 
-                    totalICMSorigem += item.getValorItem() * descontoPorcentegem * aliquotas.get("Origem").doubleValue();
-                    totalICMSdestino += item.getValorItem() * descontoPorcentegem * aliquotas.get("Destino").doubleValue(); 
+                    totalICMSorigem += item.getValorItem() * (1 - descontoPorcentegem) * aliquotas.get("Origem").doubleValue();
+                    totalICMSdestino += item.getValorItem() * (1 - descontoPorcentegem) * aliquotas.get("Destino").doubleValue(); 
                 }
-                System.out.printf("ICMS estado origem: %.1f RS\n", totalICMSorigem);
-                System.out.printf("ICMS estado destino: %.1f RS\n", totalICMSdestino);
+                System.out.printf("ICMS estado origem: %.2f RS\n", totalICMSorigem);
+                System.out.printf("ICMS estado destino: %.2f RS\n", totalICMSdestino);
+
                 System.out.println("gerando nota fiscal...");
             }
         } catch (Exception e) {
