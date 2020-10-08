@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business;
+package br.ufes.business;
+
 
 import br.ufes.model.Pedido;
 import br.ufes.model.StatusPedido;
@@ -13,8 +14,8 @@ import java.time.LocalDate;
  *
  * @author hiago
  */
-public class PagamentoCartaoDebito implements IFormaPagamento{
-   private LocalDate dataAtual=LocalDate.now();
+public class PagamentoDinheiro implements IFormaPagamento{
+    private LocalDate dataAtual=LocalDate.now();
     @Override
     public void validarPagamento(Pedido pedido, double saldo){
         if(dataAtual.isAfter(pedido.getDataVencimento())){
