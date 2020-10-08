@@ -90,39 +90,8 @@ public class CarrinhoDeCompra {
         itens.get(id).setNovaQuantidade(novaQuantidade);
     }    
     
-    public void processarPoliticasDeDesconto(){
-        ProcessaPoliticaDesconto processaPoliticasDesconto = new ProcessaPoliticaDesconto();
-        
-        processaPoliticasDesconto.executa(this);
-        
-        aplicaDesconto();
-    }
-    
-    public Pedido concluir(){
-        
-        calcularValor();
-        
-        processarPoliticasDeDesconto();
-
-        
-//      Adicionar aqui o código para calcular os descontos
-//      Para efeitos de testes vou colocar uma valor fixo para o desconto
-//        
-//      double porcentagemDesconto = 0.1;
-//      valorAPagar = valor - (valor * porcentagemDesconto);
-//        
-//      valorDesconto = valor - valorAPagar;
-        
-        Pedido pedido;
-        pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
-        
-        for (Item item : itens){
-            item.getProduto().setNovaQuantidade(item.getQuantidade());
-        }
-        
-        System.out.println(pedido);
-        return pedido;
-    
+    public void setCupom(String cupom){
+        this.cupom = cupom;
     }
     
     public int getId() {
@@ -154,5 +123,31 @@ public class CarrinhoDeCompra {
     }
     public List<Item> getItens() {
         return Collections.unmodifiableList(itens);
+    }
+    
+    public void executaPoliticasDesconto(){
+        ProcessaPoliticaDesconto processaPoliticaDesconto = new ProcessaPoliticaDesconto();
+        
+        processaPoliticaDesconto.executa(this);
+    }
+    
+    public Pedido concluir(){
+        
+        calcularValor();
+        
+        executaPoliticasDesconto();
+        
+        aplicaDesconto();
+        
+        Pedido pedido;
+        pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
+        
+        for (Item item : itens){
+            item.getProduto().setNovaQuantidade(item.getQuantidade());
+        }
+        
+        System.out.println(pedido);
+        return pedido;
+    
     }
 }

@@ -8,8 +8,9 @@ public class RegraDescontoCupom implements IPoliticaDeDesconto{
 
     @Override
     public void calcular(CarrinhoDeCompra carrinhoCompra) {
+        if (carrinhoCompra.getCupom() == null){
         
-        if (carrinhoCompra.getCupom().toLowerCase().equals("10OFF")){
+        }else if (carrinhoCompra.getCupom().toLowerCase().equals("10OFF")){
             double valorDesconto = carrinhoCompra.valor * 0.10;
             carrinhoCompra.calculaDesconto(valorDesconto);
         } 
