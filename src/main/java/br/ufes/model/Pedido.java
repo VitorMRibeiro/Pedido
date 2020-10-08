@@ -1,9 +1,9 @@
 package br.ufes.model;
 
-import business.PagamentoCartaoCredito;
-import business.PagamentoCartaoDebito;
-import business.PagamentoDinheiro;
-import business.ProcessadoraDePagamento;
+import br.ufes.business.PagamentoCartaoCredito;
+import br.ufes.business.PagamentoCartaoDebito;
+import br.ufes.business.PagamentoDinheiro;
+import br.ufes.business.ProcessadoraDePagamento;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.time.LocalDate;
