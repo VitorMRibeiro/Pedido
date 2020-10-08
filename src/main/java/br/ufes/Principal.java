@@ -35,8 +35,6 @@ public class Principal {
             pedido.efetuarPagamento("cartão de crédito", 10);
             System.out.println(pedido.getStatus().getDescricao());
 
-            ICMS.calculaICMS("Armas e Municoes", "SP", "RJ");
-            
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());
 

@@ -11,6 +11,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
+import java.lang.Number;
+import br.ufes.business.ICMS;
+
 
 public final class Pedido {
 
@@ -87,7 +91,24 @@ public final class Pedido {
         }
         
         try {
-            processadora.efetuarPagamento(this,saldo);
+            processadora.efetuarPagamento(this, saldo);
+            if( status == StatusPedido.PAGO ){
+                System.out.println("calculando ICMS...");
+                double descontoPorcentegem = valorDesconto / valor;
+                Map<String, Number> aliquotas;
+                double totalICMSorigem = 0;
+                double totalICMSdestino = 0;
+                
+                for(Item item : itens){
+                    aliquotas = ICMS.calculaICMS(item.getProduto().getTipo(), "SP", "RJ");
+
+                    totalICMSorigem += item.getValorItem() * descontoPorcentegem * aliquotas.get("Origem").doubleValue();
+                    totalICMSdestino += item.getValorItem() * descontoPorcentegem * aliquotas.get("Destino").doubleValue(); 
+                }
+                System.out.printf("ICMS estado origem: %.1f RS\n", totalICMSorigem);
+                System.out.printf("ICMS estado destino: %.1f RS\n", totalICMSdestino);
+                System.out.println("gerando nota fiscal...");
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
