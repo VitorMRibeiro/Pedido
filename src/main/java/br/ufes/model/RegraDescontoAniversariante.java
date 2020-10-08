@@ -11,7 +11,7 @@ public class RegraDescontoAniversariante implements IPoliticaDeDesconto{
         
         if (cliente.getDataNascimento().equals(hoje)){
             double valorDesconto = carrinhoCompra.getValor() * 0.2;
-            carrinhoCompra.aplicaDesconto(valorDesconto);
+            carrinhoCompra.calculaDesconto(valorDesconto);
         } 
     }
 }

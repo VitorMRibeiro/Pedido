@@ -6,9 +6,9 @@ public class RegraDescontoPontuacao implements IPoliticaDeDesconto{
     public void calcular(CarrinhoDeCompra carrinhoCompra) {
         Cliente cliente = carrinhoCompra.getCliente();
         
-        if (cliente.getPontuacao() == 100 && carrinhoCompra.valorAPagar >= 150.00){
-            double valorDesconto = carrinhoCompra.valorAPagar - 100;
-            carrinhoCompra.aplicaDesconto(valorDesconto);
+        if (cliente.getPontuacao() == 100 && carrinhoCompra.valor >= 150.00){
+            double valorDesconto = carrinhoCompra.valor - 100;
+            carrinhoCompra.calculaDesconto(valorDesconto);
         } 
     }
 }

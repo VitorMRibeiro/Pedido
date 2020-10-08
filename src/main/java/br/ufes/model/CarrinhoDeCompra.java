@@ -1,6 +1,7 @@
 
 package br.ufes.model;
 
+import business.ProcessaPoliticaDesconto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,10 +58,16 @@ public class CarrinhoDeCompra {
         }
     }
     
-    public void aplicaDesconto(double valorAPagar) {
-        valorAPagar = valor - valorDesconto; 
+    public void calculaDesconto(double valorADescontar) {
+        
+        valorDesconto += valorADescontar; 
+    }
+    
+    public void aplicaDesconto(){
+        valorAPagar = valor - valorDesconto;
     }
 
+    
     public void removerItem(String nomeProduto) {
 
         Optional<Item> produtoEncontrado = getItemPorNome(nomeProduto);
@@ -83,11 +90,19 @@ public class CarrinhoDeCompra {
         itens.get(id).setNovaQuantidade(novaQuantidade);
     }    
     
+    public void processarPoliticasDeDesconto(){
+        ProcessaPoliticaDesconto processaPoliticasDesconto = new ProcessaPoliticaDesconto();
+        
+        processaPoliticasDesconto.executa(this);
+        
+        aplicaDesconto();
+    }
+    
     public Pedido concluir(){
         
         calcularValor();
         
-        aplicaDesconto(valor);
+        processarPoliticasDeDesconto();
 
         
 //      Adicionar aqui o código para calcular os descontos

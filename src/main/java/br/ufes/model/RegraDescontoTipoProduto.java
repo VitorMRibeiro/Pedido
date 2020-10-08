@@ -17,20 +17,20 @@ public class RegraDescontoTipoProduto implements IPoliticaDeDesconto{
             Produto produto = item.getProduto();
             String tipoProduto = produto.getTipo();
             if (tipoProduto.equals("Papelaria")){
-                double valorDesconto = carrinhoCompra.valorAPagar * 0.10;
-                carrinhoCompra.aplicaDesconto(valorDesconto);
+                double valorDesconto = carrinhoCompra.valor * 0.10;
+                carrinhoCompra.calculaDesconto(valorDesconto);
             } else if (tipoProduto.equals("Comida")){
-                double valorDesconto = carrinhoCompra.valorAPagar * 0.20;
-                carrinhoCompra.aplicaDesconto(valorDesconto);
+                double valorDesconto = carrinhoCompra.valor * 0.20;
+                carrinhoCompra.calculaDesconto(valorDesconto);
             } else if (tipoProduto.equals("Roupa")){
-                double valorDesconto = carrinhoCompra.valorAPagar * 0.25;
-                carrinhoCompra.aplicaDesconto(valorDesconto);
+                double valorDesconto = carrinhoCompra.valor * 0.25;
+                carrinhoCompra.calculaDesconto(valorDesconto);
             } else if (tipoProduto.equals("Comida")){
-                double valorDesconto = carrinhoCompra.valorAPagar * 0.05;
-                carrinhoCompra.aplicaDesconto(valorDesconto);
+                double valorDesconto = carrinhoCompra.valor * 0.05;
+                carrinhoCompra.calculaDesconto(valorDesconto);
             } else {
-                double valorDesconto = carrinhoCompra.valorAPagar;
-                carrinhoCompra.aplicaDesconto(valorDesconto);
+                double valorDesconto = carrinhoCompra.valor;
+                carrinhoCompra.calculaDesconto(valorDesconto);
             }  
         }
     };
