@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufes.business;
+package br.ufes.model;
 
 import br.ufes.model.Pedido;
 

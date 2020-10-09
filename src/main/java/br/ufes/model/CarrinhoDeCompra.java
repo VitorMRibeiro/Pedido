@@ -1,6 +1,7 @@
 
 package br.ufes.model;
 
+import br.ufes.business.ProcessaNotaFiscal;
 import br.ufes.business.ProcessaPoliticaDesconto;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class CarrinhoDeCompra {
     protected final ArrayList<Item> itens = new ArrayList<>();
     protected final LocalDate data;
     protected final LocalDate dataVencimento;
+    protected ProcessaNotaFiscal notaFiscal;
 
     public CarrinhoDeCompra(int id, Cliente cliente, LocalDate data) {
         if (cliente == null) {
@@ -139,7 +141,8 @@ public class CarrinhoDeCompra {
         aplicaDesconto();
         
         Pedido pedido;
-        pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO);
+        
+        pedido = new Pedido(id, cliente, itens, data, valor, valorDesconto, valorAPagar, StatusPedido.ABERTO, notaFiscal);
         
         for (Item item : itens){
             item.getProduto().setNovaQuantidade(item.getQuantidade());

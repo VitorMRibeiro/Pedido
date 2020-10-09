@@ -1,4 +1,4 @@
-package br.ufes.business;
+package br.ufes.model;
 
 import java.util.Collections;
 import java.util.Set;

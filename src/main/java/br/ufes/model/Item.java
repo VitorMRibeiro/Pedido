@@ -49,11 +49,11 @@ public final class Item {
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
-        return produto.getNome()
-                + ", tipo: " + produto.getTipo()
-                + ", valor Unitario: R$ " + valorUnitario
-                + ", quantidade no pedido:" + quantidade
-                + ", valor Total: R$ " + df.format(getValorItem());
+        return "Nome: " + produto.getNome()
+                + ", Tipo: " + produto.getTipo()
+                + ", Valor Unitario: R$" + df.format(valorUnitario)
+                + ", Quantidade no pedido: " + df.format(quantidade)
+                + ", Valor Total: R$" + df.format(getValorItem());
     }
 
 }

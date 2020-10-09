@@ -5,6 +5,7 @@
  */
 package br.ufes.business;
 
+import br.ufes.model.IFormaPagamento;
 import br.ufes.model.Pedido;
 
 /**

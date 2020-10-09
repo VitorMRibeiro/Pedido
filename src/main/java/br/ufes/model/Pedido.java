@@ -1,8 +1,5 @@
 package br.ufes.model;
 
-import br.ufes.business.PagamentoCartaoCredito;
-import br.ufes.business.PagamentoCartaoDebito;
-import br.ufes.business.PagamentoDinheiro;
 import br.ufes.business.ProcessadoraDePagamento;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -13,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Map;
 import java.lang.Number;
-import br.ufes.business.ICMS;
+import br.ufes.business.ProcessaNotaFiscal;
+
 
 
 public final class Pedido {
@@ -27,8 +25,10 @@ public final class Pedido {
     protected final LocalDate data;
     protected final LocalDate dataVencimento;
     protected StatusPedido status;
+    protected ProcessaNotaFiscal notaFiscal;
 
-    public Pedido(int id, Cliente cliente, ArrayList<Item> itens, LocalDate data, double valor, double valorDesconto, double valorAPagar, StatusPedido status) {
+
+    public Pedido(int id, Cliente cliente, ArrayList<Item> itens, LocalDate data, double valor, double valorDesconto, double valorAPagar, StatusPedido status, ProcessaNotaFiscal notaFiscal) {
         if (cliente == null) {
             throw new RuntimeException("Informe um cliente válido");
         }
@@ -41,6 +41,7 @@ public final class Pedido {
         this.dataVencimento = data.plusDays(5);
         this.status = status;
         this.itens = new ArrayList<>(itens);
+        this.notaFiscal = notaFiscal;
     }
 
     public void atualizarStatus(StatusPedido status) {
@@ -79,6 +80,8 @@ public final class Pedido {
         return Collections.unmodifiableList(itens);
     }
     public void efetuarPagamento(String formaDePagamento, double saldo ){
+        
+        System.out.println("EFETUANDO PAGAMENTO...\n");
         ProcessadoraDePagamento processadora = null;
         if(formaDePagamento.equals("cartão de crédito")){
             processadora = new ProcessadoraDePagamento(new PagamentoCartaoCredito());
@@ -93,7 +96,7 @@ public final class Pedido {
         try {
             processadora.efetuarPagamento(this, saldo);
             if( status == StatusPedido.PAGO ){
-                System.out.println("calculando ICMS...");
+                System.out.println("CALCULANDO ICMS...\n");
                 double descontoPorcentegem = valorDesconto / valor;
                 Map<String, Number> aliquotas;
                 double totalICMSorigem = 0;
@@ -105,10 +108,13 @@ public final class Pedido {
                     totalICMSorigem += item.getValorItem() * (1 - descontoPorcentegem) * aliquotas.get("Origem").doubleValue();
                     totalICMSdestino += item.getValorItem() * (1 - descontoPorcentegem) * aliquotas.get("Destino").doubleValue(); 
                 }
-                System.out.printf("ICMS estado origem: %.2f RS\n", totalICMSorigem);
-                System.out.printf("ICMS estado destino: %.2f RS\n", totalICMSdestino);
+                System.out.printf("ICMS Estado origem: R$%.2f\n", totalICMSorigem);
+                System.out.printf("ICMS Estado destino: R$%.2f\n\n", totalICMSdestino);
 
-                System.out.println("gerando nota fiscal...");
+                System.out.println("GERANDO NOTA FISCAL...\n");
+                
+                ProcessaNotaFiscal notaFiscal = new ProcessaNotaFiscal();
+                notaFiscal.imprime(this);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -119,15 +125,15 @@ public final class Pedido {
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.00");
-        String retorno = "--------------- Pedido --------------\n";
+        String retorno = "---------------------------------------- PEDIDO ---------------------------------------\n";
         retorno += "Código: " + id + "\n";
         retorno += cliente + "\n";
-        retorno += "Data: " + data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ", ";
+        retorno += "Data: " + data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n";
         retorno += "Data de vencimento: " + dataVencimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n";
-        retorno += "Valor sem desconto: R$ " + df.format(getValor()) + "\n";
-        retorno += "Valor do desconto: R$ " + df.format(valorDesconto) + "\n";
-        retorno += "Valor a pagar: R$ " + df.format(valorAPagar) + "\n";
-        retorno += "Status do pedido " + status.getDescricao() + "\n";
+        retorno += "Valor sem desconto: R$" + df.format(getValor()) + "\n";
+        retorno += "Valor do desconto: R$" + df.format(valorDesconto) + "\n";
+        retorno += "Valor a pagar: R$" + df.format(valorAPagar) + "\n";
+        retorno += "Status do pedido: " + status.getDescricao() + "\n";
         retorno += "Itens do pedido:\n";
         for (Item item : itens) {
             retorno += item.toString() + "\n";

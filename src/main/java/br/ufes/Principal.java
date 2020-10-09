@@ -1,11 +1,11 @@
 package br.ufes;
 
-import br.ufes.business.ICMS;
+import br.ufes.model.ICMS;
 import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Cliente;
 import br.ufes.model.Pedido;
 import br.ufes.model.Produto;
-import br.ufes.business.ICMS;
+import br.ufes.model.ICMS;
 import br.ufes.business.ProcessaPoliticaDesconto;
 import java.time.LocalDate;
 import java.lang.Integer;
@@ -50,7 +50,7 @@ public class Principal {
             pedido.efetuarPagamento("cartão de crédito", 50);
             
             //Novo status do pedido
-            System.out.println(pedido.getStatus().getDescricao());
+            System.out.println("STATUS DO PEDIDO: " + pedido.getStatus().getDescricao());
 
         } catch (RuntimeException rte) {
             System.err.println("Falha: " + rte.getMessage());

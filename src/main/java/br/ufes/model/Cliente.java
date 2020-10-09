@@ -38,8 +38,8 @@ public final class Cliente {
     @Override
     public String toString() {
         return "Cliente: " + nome + "\n"
-                +"CNPJ/CPF = " + CNPJOuCPF + "\n"
-                +"Pontuação = " + pontuacao + "\n";
+                +"CNPJ/CPF: " + CNPJOuCPF + "\n"
+                +"Pontuação: " + pontuacao + "\n";
     }
 
 }
