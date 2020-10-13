@@ -5,9 +5,6 @@
  */
 package br.ufes.model;
 
-import br.ufes.model.IFormaPagamento;
-import br.ufes.model.Pedido;
-import br.ufes.model.StatusPedido;
 import java.time.LocalDate;
 
 /**

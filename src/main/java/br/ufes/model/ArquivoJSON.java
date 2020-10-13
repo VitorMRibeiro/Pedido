@@ -6,7 +6,6 @@
 package br.ufes.model;
 
 
-import br.ufes.model.ITipoDeArquivo;
 import com.google.gson.Gson;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,10 +1,8 @@
 package br.ufes.model;
 
-import java.util.Collections;
 import java.util.Set;
 import static java.util.Map.entry;
 import java.util.Map;
-import java.lang.Double;
 import java.lang.Integer;
 
 

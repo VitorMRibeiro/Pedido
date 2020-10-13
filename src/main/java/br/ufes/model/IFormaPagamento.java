@@ -5,8 +5,6 @@
  */
 package br.ufes.model;
 
-import br.ufes.model.Pedido;
-
 /**
  *
  * @author hiago

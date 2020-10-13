@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.Map;
 import java.lang.Number;
 import br.ufes.business.ProcessaNotaFiscal;
@@ -114,11 +113,17 @@ public final class Pedido {
                 System.out.println("GERANDO NOTA FISCAL...\n");
                 
                 cliente.incrementaPontuacao(this.getValorAPagar()*0.02);
-                System.out.println("Pontuação final: " + cliente.getPontuacao());
+                
+                //System.out.println("Pontuação final: " + cliente.getPontuacao());
                 
                 ProcessaNotaFiscal notaFiscal = new ProcessaNotaFiscal();
                 notaFiscal.imprime(this);
+                
+                System.out.println("PAGAMENTO EFETUADO COM SUCESSO...\n");
             }
+            else
+                System.out.println("PAGAMENTO NÃO EFETUADO\n");
+            
         } catch (Exception e) {
             System.out.println(e);
         }

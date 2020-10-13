@@ -5,8 +5,6 @@
  */
 package br.ufes.model;
 
-import br.ufes.model.ITipoDeArquivo;
-import br.ufes.model.Pedido;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
