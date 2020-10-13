@@ -21,7 +21,7 @@ public class PagamentoCartaoCredito implements IFormaPagamento{
         if(dataAtual.isAfter(pedido.getDataVencimento())){
             pedido.atualizarStatus(StatusPedido.VENCIDO);
         }
-        else if(saldo>pedido.getValorAPagar()){
+        else if(saldo>=pedido.getValorAPagar()){
             pedido.atualizarStatus(StatusPedido.PAGO);
         }else{
             pedido.atualizarStatus(StatusPedido.NAOAPROVADO);

@@ -148,6 +148,9 @@ public class CarrinhoDeCompra {
             item.getProduto().setNovaQuantidade(item.getQuantidade());
         }
         
+        //cliente.incrementaPontuacao(pedido.getValorAPagar()*0.02);
+        //System.out.println("Pontuação final: " + cliente.getPontuacao());
+        
         System.out.println(pedido);
         return pedido;
     

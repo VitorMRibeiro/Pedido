@@ -12,10 +12,10 @@ public class ProcessaPoliticaDesconto {
     private ArrayList<IPoliticaDeDesconto> regrasDesconto = new ArrayList<>();
 
     public ProcessaPoliticaDesconto() {
+        regrasDesconto.add(new RegraDescontoTipoProduto());
         regrasDesconto.add(new RegraDescontoAniversariante());
         regrasDesconto.add(new RegraDescontoCupom());
-        regrasDesconto.add(new RegraDescontoPontuacao());
-        regrasDesconto.add(new RegraDescontoTipoProduto());
+        regrasDesconto.add(new RegraDescontoPontuacao());        
     }
     
     public void executa(CarrinhoDeCompra carrinhoCompra){

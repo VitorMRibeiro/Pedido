@@ -20,7 +20,7 @@ import java.text.DecimalFormat;
 
 /**
  *
- * @author FERNANDP
+ * @author FERNANDO
  */
 public class ArquivoPDF implements ITipoDeArquivo {
     

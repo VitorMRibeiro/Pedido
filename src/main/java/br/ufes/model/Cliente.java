@@ -7,7 +7,7 @@ public final class Cliente {
     private final String nome;
     private final String CNPJOuCPF;
     private final LocalDate dataNascimento;
-    private int pontuacao = 0;
+    private double pontuacao = 10;
 
     public Cliente(String nome, String codigo, LocalDate dataNascimento) {
         this.nome = nome;
@@ -23,7 +23,7 @@ public final class Cliente {
         return CNPJOuCPF;
     }
 
-    public int getPontuacao() {
+    public double getPontuacao() {
         return pontuacao;
     }
 
@@ -31,7 +31,7 @@ public final class Cliente {
         return dataNascimento;
     }
         
-    public void incrementaPontuacao(int incremento){
+    public void incrementaPontuacao(double incremento){
         pontuacao += incremento;
     }
 

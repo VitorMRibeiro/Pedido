@@ -16,22 +16,26 @@ public class RegraDescontoTipoProduto implements IPoliticaDeDesconto{
         for (Item item : itens){
             Produto produto = item.getProduto();
             String tipoProduto = produto.getTipo();
-            if (tipoProduto.equals("Papelaria")){
-                double valorDesconto = carrinhoCompra.valor * 0.10;
+            if (tipoProduto.equals("Calçado")){
+                double valorDesconto = item.getValorItem() * 0.05;
                 carrinhoCompra.calculaDesconto(valorDesconto);
+            } else if (tipoProduto.equals("Papelaria")){
+                double valorDesconto = item.getValorItem() * 0.10;
+                carrinhoCompra.calculaDesconto(valorDesconto);
+                System.out.println(valorDesconto);
             } else if (tipoProduto.equals("Comida")){
-                double valorDesconto = carrinhoCompra.valor * 0.20;
+                double valorDesconto = item.getValorItem() * 0.20;
                 carrinhoCompra.calculaDesconto(valorDesconto);
+                System.out.println(valorDesconto);
             } else if (tipoProduto.equals("Roupa")){
-                double valorDesconto = carrinhoCompra.valor * 0.25;
-                carrinhoCompra.calculaDesconto(valorDesconto);
-            } else if (tipoProduto.equals("Comida")){
-                double valorDesconto = carrinhoCompra.valor * 0.05;
+                double valorDesconto = item.getValorItem() * 0.25;
                 carrinhoCompra.calculaDesconto(valorDesconto);
             } else {
-                double valorDesconto = carrinhoCompra.valor;
-                carrinhoCompra.calculaDesconto(valorDesconto);
+                //double valorDesconto = carrinhoCompra.valor;
+                //carrinhoCompra.calculaDesconto(valorDesconto);
             }  
+            System.out.println("desc produto");
+            //System.out.println(valorDesconto);
         }
     };
 }

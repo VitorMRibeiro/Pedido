@@ -7,11 +7,15 @@ public class RegraDescontoAniversariante implements IPoliticaDeDesconto{
     @Override
     public void calcular(CarrinhoDeCompra carrinhoCompra) {
         Cliente cliente = carrinhoCompra.getCliente();
-        final LocalDate hoje = LocalDate.now();
+        LocalDate hoje = LocalDate.now();
+        //System.out.println("aniversariante");
         
-        if (cliente.getDataNascimento().equals(hoje)){
+        if (cliente.getDataNascimento().getMonth()== hoje.getMonth() && cliente.getDataNascimento().getDayOfMonth() == hoje.getDayOfMonth()){
             double valorDesconto = carrinhoCompra.getValor() * 0.2;
             carrinhoCompra.calculaDesconto(valorDesconto);
+            
+            System.out.println("aniversariante");
+            System.out.println(valorDesconto);
         } 
     }
 }

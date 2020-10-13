@@ -113,6 +113,9 @@ public final class Pedido {
 
                 System.out.println("GERANDO NOTA FISCAL...\n");
                 
+                cliente.incrementaPontuacao(this.getValorAPagar()*0.02);
+                System.out.println("Pontuação final: " + cliente.getPontuacao());
+                
                 ProcessaNotaFiscal notaFiscal = new ProcessaNotaFiscal();
                 notaFiscal.imprime(this);
             }
