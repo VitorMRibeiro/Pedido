@@ -8,11 +8,13 @@ public final class Cliente {
     private final String CNPJOuCPF;
     private final LocalDate dataNascimento;
     private double pontuacao = 10;
+    private String endereco;
 
-    public Cliente(String nome, String codigo, LocalDate dataNascimento) {
+    public Cliente(String nome, String codigo, LocalDate dataNascimento, String endereco) {
         this.nome = nome;
         this.CNPJOuCPF = codigo;
         this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
     }
 
     public String getNome() {
@@ -35,11 +37,20 @@ public final class Cliente {
         pontuacao += incremento;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+    
     @Override
     public String toString() {
         return "Cliente: " + nome + "\n"
-                +"CNPJ/CPF: " + CNPJOuCPF + "\n"
-                +"Pontuação: " + pontuacao + "\n";
+               +"CNPJ/CPF: " + CNPJOuCPF + "\n"
+                +"Pontuação: " + pontuacao + "\n"
+                +"Endereço: " + endereco + "\n";
     }
 
 }

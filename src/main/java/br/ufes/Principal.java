@@ -1,15 +1,10 @@
 package br.ufes;
 
-import br.ufes.model.ICMS;
 import br.ufes.model.CarrinhoDeCompra;
 import br.ufes.model.Cliente;
 import br.ufes.model.Pedido;
 import br.ufes.model.Produto;
-import br.ufes.model.ICMS;
-import br.ufes.business.ProcessaPoliticaDesconto;
 import java.time.LocalDate;
-import java.lang.Integer;
-import java.time.Month;
 
 /**
  *
@@ -22,8 +17,8 @@ public class Principal {
         try {
             
             //Cadastrando cliente
-            Cliente cliente1 = new Cliente("Fulano", "123.456.789-01", LocalDate.of(1990,10,13));
-            Cliente cliente2 = new Cliente("Ciclano", "123.978.412-01", LocalDate.of(1990,10,10));
+            Cliente cliente1 = new Cliente("Tábata", "123.456.789-01", LocalDate.of(1990,10,13), "Rua Colapso Cardíaco, n° 2020");
+            Cliente cliente2 = new Cliente("Fernando", "123.978.412-01", LocalDate.of(1990,10,10), "Avenida Infarto do Miocárdio, n° 2021");
 
             //Cadastrando produtos
             Produto produto1 = new Produto("Caneta", 100, 50, "Papelaria");

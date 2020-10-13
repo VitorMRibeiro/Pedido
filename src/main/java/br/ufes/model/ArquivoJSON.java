@@ -26,7 +26,8 @@ public class ArquivoJSON implements ITipoDeArquivo {
         FileWriter writeFile;
 
             try {
-                writeFile = new FileWriter("PedidoJSON.json");
+                String nomeArquivo = "Pedido " + pedido.getId() + ".json";
+                writeFile = new FileWriter(nomeArquivo);
                 writeFile.write(json);
                 writeFile.close();
             }

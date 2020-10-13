@@ -13,8 +13,10 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -24,32 +26,42 @@ public class ArquivoPDF implements ITipoDeArquivo {
     
     @Override
     public void gerar(Pedido pedido) /*throws IOException, DocumentException*/ {
-
+        
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("Pedido.pdf"));
+            String nomeArquivo = "Pedido " + pedido.getId() + ".pdf";
+            PdfWriter.getInstance(document, new FileOutputStream(nomeArquivo));
             document.open();
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
             PdfPTable table = new PdfPTable(4);
-
-            PdfPCell cellHeader1 = new PdfPCell(new Paragraph("PEDIDO " + pedido.id));
-            PdfPCell cellHeader2 = new PdfPCell(new Paragraph("" + pedido.cliente));
+            
+            PdfPCell cellHeader1 = new PdfPCell(new Paragraph("NOTA FISCAL NF-e " + pedido.id));
+            PdfPCell cellHeader2 = new PdfPCell(new Paragraph("Data e hora de emissão: " + LocalDateTime.now().format(formatter)));
+            
+            PdfPCell cellHeader3 = new PdfPCell(new Paragraph("PEDIDO " + pedido.id));
+            PdfPCell cellHeader4 = new PdfPCell(new Paragraph("" + pedido.cliente));
 
             cellHeader1.setColspan(4);
             cellHeader2.setColspan(4);
+            cellHeader3.setColspan(4);
+            cellHeader4.setColspan(4);
 
             table.addCell(cellHeader1);
             table.addCell(cellHeader2);
+            table.addCell(cellHeader3);
+            table.addCell(cellHeader4);
 
             table.addCell("");
             table.addCell("Data: " + pedido.data);
             table.addCell("Data vencimento: " + pedido.dataVencimento);
             table.addCell("Status: " + pedido.status);
 
-            PdfPCell cellHeader3 = new PdfPCell(new Paragraph("ITENS"));
-            cellHeader3.setColspan(4);
-            cellHeader3.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
-            table.addCell(cellHeader3);
+            PdfPCell cellHeader5 = new PdfPCell(new Paragraph("ITENS"));
+            cellHeader5.setColspan(4);
+            cellHeader5.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+            table.addCell(cellHeader5);
 
             table.addCell("NOME");
             table.addCell("QUANTIDADE");
@@ -67,20 +79,20 @@ public class ArquivoPDF implements ITipoDeArquivo {
 
             }
             
-            PdfPCell cellHeader4 = new PdfPCell(new Paragraph("Valor total: " + df.format(pedido.valor)));
-            cellHeader4.setColspan(4);
-            cellHeader4.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-            table.addCell(cellHeader4);
-            
-            PdfPCell cellHeader5 = new PdfPCell(new Paragraph("Desconto: " + df.format(pedido.valorDesconto)));
-            cellHeader5.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-            cellHeader5.setColspan(4);
-            table.addCell(cellHeader5);
-
-            PdfPCell cellHeader6 = new PdfPCell(new Paragraph("VALOR A PAGAR: " + df.format(pedido.valorAPagar)));
-            cellHeader6.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+            PdfPCell cellHeader6 = new PdfPCell(new Paragraph("Valor total: " + df.format(pedido.valor)));
             cellHeader6.setColspan(4);
+            cellHeader6.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
             table.addCell(cellHeader6);
+            
+            PdfPCell cellHeader7 = new PdfPCell(new Paragraph("Desconto: " + df.format(pedido.valorDesconto)));
+            cellHeader7.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+            cellHeader7.setColspan(4);
+            table.addCell(cellHeader7);
+
+            PdfPCell cellHeader8 = new PdfPCell(new Paragraph("VALOR A PAGAR: " + df.format(pedido.valorAPagar)));
+            cellHeader8.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+            cellHeader8.setColspan(4);
+            table.addCell(cellHeader8);
 
             document.add(table);
             document.close();
